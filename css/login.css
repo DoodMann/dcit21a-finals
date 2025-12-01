@@ -105,6 +105,35 @@ body {
     border: 1px solid rgba(255,255,255,0.18);
 }
 
+/* Admin label above the form */
+.admin-label {
+    color: #ffd966;
+    font-weight: 600;
+    margin: 0.25rem 0 0.6rem 0;
+    text-align: left;
+}
+
+/* Action row: split the Sign In and Guest actions */
+.action-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.action-row .submit-btn,
+.action-row .guest-btn {
+    flex: 1 1 0;
+    padding: 0.7rem 0.9rem;
+}
+
+.guest-btn {
+    background: transparent;
+    color: yellow;
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.guest-btn:hover { background: rgba(255,255,255,0.03); }
+
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 @media (max-width: 520px) {

@@ -17,19 +17,20 @@
         <section class="login-box">
             <p class="main-text">This is the landing page of CvSU's plethora of websites. Sign in below or enter as an aspiring Kabsuhenyo.</p>
 
+            <p class="admin-label">Administrator login.</p>
+
             <form class="login-form" action="main.html" method="get">
                 <label for="email" class="sr-only">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                <input id="email" name="email" type="email" placeholder="Email" required>
 
                 <label for="password" class="sr-only">Password</label>
-                <input id="password" name="password" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+                <input id="password" name="password" type="password" placeholder="Password" required minlength="6">
 
-                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="action-row">
+                    <button type="submit" class="submit-btn">Sign In</button>
+                    <a href="main.html" class="alt-btn guest-btn">Enter as Aspiring Kabsuhenyo (Guest)</a>
+                </div>
             </form>
-
-            <div class="alt-actions">
-                <a href="main.html" class="alt-btn">Enter as an Aspiring Kabsuhenyo</a>
-            </div>
         </section>
     </main>
 
