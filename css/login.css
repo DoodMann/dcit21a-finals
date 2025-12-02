@@ -113,6 +113,22 @@ body {
     text-align: left;
 }
 
+.credentials {
+    color: #ffe9a8;
+    font-size: 0.95rem;
+    margin: 0 0 0.6rem 0;
+}
+
+.error {
+    background: rgba(255,80,80,0.12);
+    color: #ffd6d6;
+    border: 1px solid rgba(255,80,80,0.28);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
 /* Action row: split the Sign In and Guest actions */
 .action-row {
     display: flex;

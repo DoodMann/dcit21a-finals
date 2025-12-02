@@ -18,13 +18,17 @@
             <p class="main-text">This is the landing page of CvSU's plethora of websites. Sign in below or enter as an aspiring Kabsuhenyo.</p>
 
             <p class="admin-label">Administrator login.</p>
+            <?php if (isset($_GET['error']) && $_GET['error'] === '1'): ?>
+                <p class="error">Invalid email or password.</p>
+            <?php endif; ?>
 
-            <form class="login-form" action="main.html" method="get">
+            <form class="login-form" action="login.php" method="post">
                 <label for="email" class="sr-only">Email</label>
-                <input id="email" name="email" type="email" placeholder="Email" required>
+                    <input id="email" name="email" type="email" placeholder="Email" required>
+
 
                 <label for="password" class="sr-only">Password</label>
-                <input id="password" name="password" type="password" placeholder="Password" required minlength="6">
+                    <input id="password" name="password" type="password" placeholder="Password" required minlength="5">
 
                 <div class="action-row">
                     <button type="submit" class="submit-btn">Sign In</button>
