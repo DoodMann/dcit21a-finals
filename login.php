@@ -1,24 +1,24 @@
 <?php
 session_start();
 
-// Simple, local-only authentication for testing purposes
+// test
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    // Example credentials
+    // yes very nice creds 
     $validEmail = 'admin@admin.com';
     $validPassword = 'admin';
 
     if ($email === $validEmail && $password === $validPassword) {
-        // Mark session as logged in (optional)
+        // Mark session as logged in
         $_SESSION['logged_in'] = true;
-        // Redirect to the main site (adjust target as needed)
+        // Redirect to the main site
         header('Location: main.html');
         exit;
     }
 }
 
-// On failure, redirect back to the login page with an error flag
+// login failed, redirect back
 header('Location: index.php?error=1');
 exit;
