@@ -50,6 +50,80 @@ $userRole = $_SESSION['role'] ?? 'guest';
             </div>
             <?php endif; ?>
         </main>
+
+        <!-- Pin Modal / Sidebar -->
+        <div id="pin-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <button class="close-modal">&times;</button>
+                
+                <h2 id="modal-title">Pin Details</h2>
+                
+                <!-- View Mode (For Guests or Read-only) -->
+                <div id="view-mode" class="mode-section">
+                    <!-- Hero Image with Title Overlay -->
+                    <div id="hero-section" class="hero-section hidden">
+                        <div class="hero-overlay">
+                            <h2 id="view-name" class="hero-title"></h2>
+                        </div>
+                    </div>
+                    
+                    <!-- Fallback title if no images -->
+                    <h3 id="view-name-fallback" class="view-name-fallback hidden"></h3>
+                    
+                    <p id="view-desc" class="view-description"></p>
+                    
+                    <!-- Additional Images Gallery -->
+                    <div id="view-gallery" class="image-gallery hidden">
+                        <!-- Additional images will be dynamically inserted here -->
+                    </div>
+                    
+                    <?php if ($userRole === 'admin'): ?>
+                        <div class="modal-actions">
+                            <button id="btn-delete-pin" class="btn-danger">Delete Pin</button>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Edit Mode (For Admins) -->
+                <?php if ($userRole === 'admin'): ?>
+                <div id="edit-mode" class="mode-section hidden">
+                    <form id="pin-form">
+                        <input type="hidden" id="pin-id">
+                        <input type="hidden" id="pin-x">
+                        <input type="hidden" id="pin-y">
+                        
+                        <div class="form-group">
+                            <label for="pin-name">Name</label>
+                            <input type="text" id="pin-name" placeholder="e.g. Main Library" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pin-desc">Description</label>
+                            <textarea id="pin-desc" rows="3" placeholder="Description of the location..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Images</label>
+                            <div class="image-upload-section">
+                                <input type="file" id="image-upload" accept="image/*" multiple style="display: none;">
+                                <button type="button" id="btn-upload-image" class="btn-upload">
+                                    📷 Upload Images
+                                </button>
+                                <div id="image-previews" class="image-preview-grid">
+                                    <!-- Preview thumbnails will appear here -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button type="submit" class="btn-primary">Save Pin</button>
+                            <button type="button" id="btn-cancel-edit" class="btn-ghost">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
 
     <script src="js/map.js"></script>
