@@ -17,12 +17,11 @@
         <section class="login-box">
             <p class="main-text">This is the landing page of CvSU's plethora of websites. Sign in below or enter as an aspiring Kabsuhenyo.</p>
 
-            <p class="admin-label">Administrator login.</p>
-            <?php if (isset($_GET['error']) && $_GET['error'] === '1'): ?>
-                <p class="error">Invalid email or password.</p>
-            <?php endif; ?>
-
             <form class="login-form" action="login.php" method="post">
+                <p class="admin-label">Administrator login</p>
+                <?php if (isset($_GET['error']) && $_GET['error'] === '1'): ?>
+                    <p class="error">Invalid email or password.</p>
+                <?php endif; ?>
                 <label for="email" class="sr-only">Email</label>
                     <input id="email" name="email" type="email" placeholder="Email" required>
 
@@ -32,7 +31,7 @@
 
                 <div class="action-row">
                     <button type="submit" class="submit-btn">Sign In as Administrator</button>
-                    <a href="main.html" class="alt-btn guest-btn">Or enter as a guest.</a>
+                    <a href="login.php?guest=true" class="alt-btn guest-btn">Or enter as a guest.</a>
                 </div>
             </form>
         </section>

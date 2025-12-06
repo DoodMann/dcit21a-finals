@@ -1,30 +1,201 @@
-html {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: green;
+:root {
+    --primary-color: #2e7d32;
+    /* CvSU Green */
+    --primary-dark: #1b5e20;
+    --accent-color: #fdd835;
+    /* Gold/Yellow */
+    --bg-color: #f4f6f8;
+    --surface-color: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5f6368;
+    --danger-color: #d32f2f;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    overflow: hidden;
+    /* App-like feel */
+}
+
+/* App Container */
+.app-container {
     display: flex;
     flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+.app-header {
+    height: 64px;
+    background: var(--surface-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    background-color: #29e71056;
+    padding: 0 24px;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
 }
 
-.main-text {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1.5rem 2rem;
-    background-color: rgba(0,0,0,0.25);
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-left h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge.admin {
+    background-color: rgba(46, 125, 50, 0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.badge.guest {
+    background-color: rgba(95, 99, 104, 0.1);
+    color: var(--text-secondary);
+    border: 1px solid var(--text-secondary);
+}
+
+.btn-logout {
+    text-decoration: none;
+    color: var(--danger-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: rgba(211, 47, 47, 0.05);
+}
+
+/* Map Wrapper */
+.map-wrapper {
+    flex: 1;
+    position: relative;
+    background-color: #e0e0e0;
+    /* Placeholder map bg */
+    overflow: hidden;
+    cursor: grab;
+}
+
+.map-wrapper:active {
+    cursor: grabbing;
+}
+
+/* The actual "Map" Element (scalable) */
+#map-container {
+    width: 2000px;
+    height: 2000px;
+    /* background: radial-gradient(circle, #ffffff 0%, #e0f2f1 100%); */
+    background-color: #e0f2f1;
+    background-image: url('../images/campus_map.jpg');
+    background-size: cover;
+    /* Or 'contain' if you want it to fit exactly, but 'cover' fills the 2000x2000 area */
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    /* Scale from top-left corner for easier math */
+    /* Transform is managed entirely by JS now */
+    touch-action: none;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+/* Admin Panel */
+.admin-panel {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 240px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.admin-panel h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.action-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
     border-radius: 8px;
-    color: yellow;
-    text-align: justify;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
-.page-title {
-    text-align: center;
-    color: yellow;
-    margin: 2rem 0 1rem 0;
+.action-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Pins */
+.map-pin {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background: var(--danger-color);
+    border-radius: 50% 50% 0 50%;
+    transform: rotate(45deg);
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    z-index: 10;
+}
+
+.map-pin::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: white;
+    border-radius: 50%;
+    top: 9px;
+    left: 9px;
+}
+
+.map-pin:hover {
+    transform: rotate(45deg) scale(1.1);
+    z-index: 11;
 }
