@@ -131,14 +131,17 @@ body {
 
 /* Action row: split the Sign In and Guest actions */
 .action-row {
+    --action-gap: 1rem;
     display: flex;
-    gap: 0.6rem;
+    flex-direction: column;
+    gap: var(--action-gap);
     margin-top: 0.25rem;
+    align-items: stretch;
 }
 
 .action-row .submit-btn,
 .action-row .guest-btn {
-    flex: 1 1 0;
+    width: 100%;
     padding: 0.7rem 0.9rem;
 }
 
@@ -149,6 +152,23 @@ body {
 }
 
 .guest-btn:hover { background: rgba(255,255,255,0.03); }
+
+/* Place Sign In above Guest and add divider between them */
+.action-row .submit-btn { 
+    order: 1;
+    position: relative;
+    margin: 0; /* spacing is handled by gap so keep this clean */
+}
+.action-row .submit-btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: calc(var(--action-gap) * -0.5); /* centered in the gap */
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+}
+.action-row .guest-btn { order: 2; }
 
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 

@@ -31,8 +31,8 @@
                     <input id="password" name="password" type="password" placeholder="Password" required minlength="5">
 
                 <div class="action-row">
-                    <button type="submit" class="submit-btn">Sign In</button>
-                    <a href="main.html" class="alt-btn guest-btn">Enter as Aspiring Kabsuhenyo (Guest)</a>
+                    <button type="submit" class="submit-btn">Sign In as Administrator</button>
+                    <a href="main.html" class="alt-btn guest-btn">Or enter as a guest.</a>
                 </div>
             </form>
         </section>
