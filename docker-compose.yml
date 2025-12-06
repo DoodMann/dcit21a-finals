@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: cvsu-campus-map
+    ports:
+      - "8080:80"
+    volumes:
+      # Mount uploads directory to persist uploaded images
+      - ./uploads:/var/www/html/uploads
+      # Mount pins.json to persist pin data
+      - ./api/pins.json:/var/www/html/api/pins.json
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Manila
