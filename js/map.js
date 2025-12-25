@@ -446,14 +446,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         pin.style.left = (x - 16) + 'px';
         pin.style.top = (y - 32) + 'px';
-        pin.dataset.id = id;
+        
+        pin.dataset.id = id;+.6035
 
         pin.title = fullData.name || 'Map Pin';
 
         pin.onclick = (e) => {
             e.stopPropagation();
             openModal(fullData);
+            
         };
+        
+        
     }
 
     function savePinToServer(pinData) {
