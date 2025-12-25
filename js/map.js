@@ -56,7 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const wrapperRect = mapWrapper.getBoundingClientRect();
         const scaleX = wrapperRect.width / MAP_WIDTH;
         const scaleY = wrapperRect.height / MAP_HEIGHT;
-        return Math.max(scaleX, scaleY);
+        // Use 0.6 multiplier to start less zoomed in
+        return Math.max(scaleX, scaleY) * 0.6;
     }
 
     function initMap() {
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.translateY = (wrapperRect.height - (MAP_HEIGHT * state.scale)) / 2;
         constrainBounds();
     }
+
 
     function constrainBounds() {
         const wrapperRect = mapWrapper.getBoundingClientRect();
@@ -446,18 +448,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         pin.style.left = (x - 16) + 'px';
         pin.style.top = (y - 32) + 'px';
-        
-        pin.dataset.id = id;+.6035
+
+        pin.dataset.id = id; +.6035
 
         pin.title = fullData.name || 'Map Pin';
 
         pin.onclick = (e) => {
             e.stopPropagation();
             openModal(fullData);
-            
+
         };
-        
-        
+
+
     }
 
     function savePinToServer(pinData) {
